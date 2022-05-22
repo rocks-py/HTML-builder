@@ -69,10 +69,7 @@ fs.mkdir(destDir, { recursive: true }, (err) => {
         resultsObj[keys[i]] = results[i];
       }
 
-      console.log(resultsObj);
-
       let replacedTemplate = replaceTemplates(resultsObj);
-      console.log(replacedTemplate);
       writeHtmlstream.write(replacedTemplate, 'utf-8');
       writeHtmlstream.end();
     });
@@ -112,7 +109,7 @@ function replaceTemplates(templateObj) {
   let result = '';
   let idxStart = 0;
   let idxEnd = 0;
-  while (true) {
+  for (; ;) {
     idxStart = template.indexOf('{{', idxStart + 1);
     let start = idxEnd === 0 ? idxEnd : idxEnd + 2;
     if (idxStart === -1) {
